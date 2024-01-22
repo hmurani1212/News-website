@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 function Navbar(props) {
+    const [maintain, setmaintain] = useState("text-black")
     const localStorageData = localStorage.getItem('email');
     const [email2, setemail] = useState("");
     const Hnadleemail = () => {
@@ -20,38 +21,40 @@ function Navbar(props) {
         console.log(credentialResponse);
     };
     const localStorageData1 = localStorage.getItem("Main");
-
+    const ChangeHandler = () => {
+        setmaintain((prevMaintain) => (prevMaintain === "text-black" ? "text-blue" : "text-black"));
+    }
 
     return (
         <div>
             <div className='fixed-top mb-5'>
-                <nav className="navbar navbar-expand-lg navbar-light bg-dark " style={{ height: "70px" }}>
+                <nav className="navbar navbar-expand-lg navbar-light bg-primary " style={{ height: "70px" }}>
                     <div className="container-fluid">
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
+                            <span className="navbar-toggler-icon" onClick={ChangeHandler}></span>
                         </button>
                         <div className="collapse navbar-collapse ml-5" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/" >Home</Link>
+                                    <Link className={`nav-link active text-black`} style={{ fontSize: "19px" }} aria-current="page" to="/" >Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/entertainment"  >Entertainment</Link>
+                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/entertainment"  >Entertainment</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/business">Buisness</Link>
+                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/business">Buisness</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/health" >Health</Link>
+                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/health" >Health</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/science" >Science</Link>
+                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/science" >Science</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/sports" >Sports</Link>
+                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/sports" >Sports</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-white" style={{ fontSize: "19px" }} aria-current="page" to="/technology" >Technology</Link>
+                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/technology" >Technology</Link>
                                 </li>
                             </ul>
                             <form className="d-flex" role="search">
