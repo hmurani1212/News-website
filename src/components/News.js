@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import NewsItem from './NewsItem'
 import Loder from "./Loder"
 import LoadingBar from 'react-top-loading-bar'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import data from "./NewsDate";
+console.log(data)
 const News = (props) => {
     const [progress, setProgress] = useState(0)
     const [articles, setArticles] = useState([]);
@@ -155,7 +157,7 @@ const News = (props) => {
                 {loading ? <Loder />
                     :
                     <div className='row my-3'>
-                        {articles.map((element, index) => (
+                        {data.map((element, index) => (
                             <div className='col-md-4' key={element.url}>
                                 <NewsItem title={element.title} result={element.totalResults} description={element.description} author={element.author} image={element.urlToImage}
                                     Date={element.publishedAt} nexturl={element.url} />
