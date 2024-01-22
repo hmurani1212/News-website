@@ -7,8 +7,6 @@ import Registeration from "./components/Registeration";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 function App() {
-  const localStoragedata1 = localStorage.getItem("Main");
-  const localStoragedata = localStorage.getItem("Email");
   return (
     <>
       <BrowserRouter>

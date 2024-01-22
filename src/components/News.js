@@ -88,47 +88,25 @@ const News = (props) => {
         }
     }
     const nextHandle = () => {
-        const localStorageData = localStorage.getItem('email');
-        const localStorageData1 = localStorage.getItem('Main');
-        if (!localStorageData && !localStorageData1) {
-            setLoading(true)
-            setProgress(20)
-            try {
-                const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.catagory}&apiKey=ebc4d2ac761d47ff8ec00d7115374236&pageSize=9&page=1`;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.articles) {
-                            setArticles(data.articles);
-                            setProgress(20)
-                        }
-                        setLoading(false)
-                        setProgress(100)
-                    });
-            } catch (error) {
-                console.log("SOme Error Occure")
-            }
-        } else {
-            setLoading(true)
-            setProgress(40)
-            setmodel(false)
-            try {
-                setCurrentPage(currentPage + 1)
-                const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=ebc4d2ac761d47ff8ec00d7115374236&page=${currentPage} &pageSize=9`;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.articles) {
-                            setArticles(data.articles);
-                        }
-                        setLoading(false)
-                        setProgress(100)
-                        setmodel(false)
+        setLoading(true)
+        setProgress(40)
+        setmodel(false)
+        try {
+            setCurrentPage(currentPage + 1)
+            const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=ebc4d2ac761d47ff8ec00d7115374236&page=${currentPage} &pageSize=9`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.articles) {
+                        setArticles(data.articles);
+                    }
+                    setLoading(false)
+                    setProgress(100)
+                    setmodel(false)
 
-                    })
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+                })
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
     }
     return (
@@ -143,12 +121,12 @@ const News = (props) => {
                 <div className='row mt-5 my-4 mt-5'>
                     <div className='col-md-3 mt-5'>
                         <div>
-                            <form>
+                            {/* <form>
                                 <label>
                                     Search News:
                                     <input type="text" value={searchQuery} onChange={handleInputChange} />
                                 </label>
-                            </form>
+                            </form> */}
                             {newsResults.length > 0 ? (
                                 <ul>
                                     {newsResults.map((news, index) => (
@@ -160,7 +138,7 @@ const News = (props) => {
                                     ))}
                                 </ul>
                             ) : (
-                                <p>No matching results.</p>
+                                <p></p>
                             )}
                         </div>
                     </div>
@@ -216,12 +194,7 @@ const News = (props) => {
                         <button type="button" disabled={currentPage <= 1} className="btn btn-dark" onClick={preHnadle} >Previous </button>
                     </div>
                     <div className="col-4">
-                        {
-                            !localStorageData && !localStorageData1 ?
-                                <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled={currentPage == 9} onClick={nextHandle} >model1</button>
-                                :
-                                <button type="button" className="btn btn-dark" disabled={currentPage == 9} onClick={nextHandle} >Note model1</button>
-                        }
+                                <button type="button" className="btn btn-dark" disabled={currentPage == 9} onClick={nextHandle} >Next </button>
                         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
