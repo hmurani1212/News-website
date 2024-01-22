@@ -4,7 +4,8 @@ import { Link, Outlet } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 function Navbar(props) {
-    const [maintain, setmaintain] = useState("text-black")
+    const [maintain, setmaintain] = useState("text-white");
+    const [name, setname]=useState(false)
     const localStorageData = localStorage.getItem('email');
     const [email2, setemail] = useState("");
     const Hnadleemail = () => {
@@ -33,13 +34,14 @@ function Navbar(props) {
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon" onClick={ChangeHandler}></span>
                         </button>
-                        <div className="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+                        {<h4 className="text-white mx-2">Hassan News App</h4>}
+                        <div className="collapse navbar-collapse ml-5 bg-primary w-100%" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                                 <li className="nav-item">
                                     <Link className={`nav-link active text-black`} style={{ fontSize: "19px" }} aria-current="page" to="/" >Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/entertainment"  >Entertainment</Link>
+                                    <Link className={`nav-link active ${maintain}`} style={{ fontSize: "19px" }} aria-current="page" to="/entertainment"  >Entertainment</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link active text-black" style={{ fontSize: "19px" }} aria-current="page" to="/business">Buisness</Link>
@@ -72,7 +74,7 @@ function Navbar(props) {
                                     : ""}
                                 {!localStorageData1 ? <div className='container'>
                                     {!localStorageData ?
-                                        <Link className="btn btn-primary" to="/Registeration" role="button">Register</Link> :
+                                        <Link className="btn btn-dark" to="/Registeration" role="button">Register</Link> :
                                         <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                             <div className="btn-group" role="group">
                                                 <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
